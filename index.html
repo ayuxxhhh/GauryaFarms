@@ -64,7 +64,7 @@
             height: 100vh;
             pointer-events: none;
             z-index: 9998;
-            opacity: 0.04;
+            opacity: 0.08;
         }
 
         /* Lenis */
@@ -74,6 +74,9 @@
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-smooth iframe { pointer-events: none; }
 
+        /* Custom Split Text & Animations */
+        .char { display: inline-block; opacity: 0; transform: translateY(60px) rotate(15deg); }
+        .hide-scroll { overflow: hidden !important; }
         
         .reveal {
             opacity: 0;
@@ -96,7 +99,15 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased text-charcoal selection:bg-gold selection:text-white">
+<body class="font-sans antialiased text-charcoal selection:bg-gold selection:text-white hide-scroll">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[10000] bg-charcoal flex flex-col items-center justify-center text-gold font-serif">
+        <div class="text-7xl md:text-9xl overflow-hidden flex items-start">
+            <span id="loader-counter" class="block translate-y-full">0</span>
+            <span class="text-3xl md:text-5xl inline-block -translate-y-2 opacity-0" id="loader-percent">%</span>
+        </div>
+    </div>
 
     <!-- Custom Cursor & Noise -->
     <div class="cursor-dot"></div>
@@ -184,72 +195,65 @@
     </section>
 
     <!-- Moodboard Section -->
-    <section id="moodboard" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center reveal">
-                <h2 class="font-serif text-4xl mb-4">Visual Direction</h2>
-                <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
-                <p class="text-muted font-light max-w-xl mx-auto">Dark glass, tactile finishes, exact scientific breakdowns, and a celebration of rich, golden textures.</p>
-            </div>
-
-            <!-- Moodboard Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
-                
-                <!-- Category 1: Bespoke Packaging -->
-                <div class="space-y-8">
-                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">I. Bespoke Packaging</h3>
-                    <p class="text-sm text-muted font-light">Moving away from standard plastic jars. Using dark UV-protective glass, minimalist labels, and tactile gold embossing to feel like a premium elixir.</p>
-                    
-                    <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
-                        <img src="assets/Gemini_Generated_Image_qa7di8qa7di8qa7d.png" alt="Gaurya Farms Dark Jar with Gold Embossing" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+    <!-- Moodboard Section (Horizontal Scroll) -->
+    <section id="moodboard-container" class="relative overflow-hidden bg-charcoal text-alabaster py-24">
+        <div class="mb-16 text-center px-6 reveal">
+            <h2 class="font-serif text-4xl mb-4 text-gold">Visual Direction</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+            <p class="text-gray-400 font-light max-w-xl mx-auto">Dark glass, tactile finishes, exact scientific breakdowns, and a celebration of rich, golden textures.</p>
+        </div>
+        <div id="moodboard-scroll-wrapper" class="flex flex-nowrap h-[70vh] w-[300vw]">
+            
+            <!-- Horizontal Panel 1 -->
+            <div class="w-screen h-full flex flex-col md:flex-row items-center justify-center px-12 md:px-24 gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="font-serif text-3xl md:text-5xl border-b border-white/10 pb-4 mb-6">I. Bespoke Packaging</h3>
+                    <p class="text-sm md:text-lg text-gray-400 font-light max-w-xl">Moving away from standard plastic jars. Using dark UV-protective glass, minimalist labels, and tactile gold embossing to feel like a premium elixir.</p>
+                </div>
+                <div class="md:w-1/2 flex gap-6 h-full justify-center items-center">
+                    <div class="moodboard-img-container h-[80%] aspect-[3/4] bg-surface relative shrink-0">
+                        <img src="assets/Gemini_Generated_Image_qa7di8qa7di8qa7d.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
                     </div>
-                    
-                    <div class="moodboard-img-container aspect-square bg-surface relative">
-                        <img src="assets/Gemini_Generated_Image_rdoecdrdoecdrdoe.png" alt="Premium Ghee Design" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted">Image unavailable</div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
-                            <img src="assets/Gemini_Generated_Image_i1awfai1awfai1aw.png" alt="Gaurya Farms Gold Cow Embossing Close-up" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                    <div class="flex flex-col gap-6 h-[80%]">
+                        <div class="moodboard-img-container h-1/2 aspect-square bg-surface relative shrink-0">
+                            <img src="assets/Gemini_Generated_Image_rdoecdrdoecdrdoe.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
                         </div>
-                        <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
-                            <img src="assets/Gemini_Generated_Image_hro7yahro7yahro7.png" alt="Himalayan Infusions" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                        <div class="moodboard-img-container h-1/2 aspect-[3/4] bg-surface relative shrink-0">
+                            <img src="assets/Gemini_Generated_Image_i1awfai1awfai1aw.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
                         </div>
                     </div>
                 </div>
-
-                <!-- Category 2: Texture & Purity -->
-                <div class="space-y-8 md:pt-12">
-                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">II. Liquid Gold</h3>
-                    <p class="text-sm text-muted font-light">Visceral, macro photography. Highlighting the rich, amber texture, the perfect pour, and the absolute purity of the fat structure.</p>
-                    
-                    <div class="moodboard-img-container aspect-[4/5] bg-surface relative">
-                        <img src="assets/pouring-oil.jpg" alt="Pouring Oil" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
-                    </div>
-
-                    <div class="moodboard-img-container aspect-square bg-surface relative">
-                        <img src="assets/oil-bubbles.jpg" alt="Oil Bubbles" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
-                    </div>
-                </div>
-
-                <!-- Category 3: Scientific Traceability -->
-                <div class="space-y-8 md:pt-24">
-                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">III. Scientific Terroir</h3>
-                    <p class="text-sm text-muted font-light">Clinical precision combined with natural beauty. Using grid layouts to explain ingredients, harvest times, and bio-hacking combinations.</p>
-                    
-                    <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
-                        <img src="assets/Gemini_Generated_Image_xei1qdxei1qdxei1.png" alt="Gaurya Farms Ingredient Grid" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
-                    </div>
-                </div>
-
             </div>
+            
+            <!-- Horizontal Panel 2 -->
+            <div class="w-screen h-full flex flex-col md:flex-row items-center justify-center px-12 md:px-24 gap-12">
+                <div class="md:w-1/2 order-2 md:order-1 flex gap-6 h-full justify-center items-center">
+                    <div class="moodboard-img-container h-[80%] aspect-[4/5] bg-surface relative shrink-0">
+                        <img src="assets/pouring-oil.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                    </div>
+                    <div class="moodboard-img-container h-[60%] aspect-square bg-surface relative shrink-0">
+                        <img src="assets/oil-bubbles.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                    </div>
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <h3 class="font-serif text-3xl md:text-5xl border-b border-white/10 pb-4 mb-6">II. Liquid Gold</h3>
+                    <p class="text-sm md:text-lg text-gray-400 font-light max-w-xl">Visceral, macro photography. Highlighting the rich, amber texture, the perfect pour, and the absolute purity of the fat structure.</p>
+                </div>
+            </div>
+
+            <!-- Horizontal Panel 3 -->
+            <div class="w-screen h-full flex flex-col md:flex-row items-center justify-center px-12 md:px-24 gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="font-serif text-3xl md:text-5xl border-b border-white/10 pb-4 mb-6">III. Scientific Terroir</h3>
+                    <p class="text-sm md:text-lg text-gray-400 font-light max-w-xl">Clinical precision combined with natural beauty. Using grid layouts to explain ingredients, harvest times, and bio-hacking combinations.</p>
+                </div>
+                <div class="md:w-1/2 flex gap-6 h-full justify-center items-center">
+                    <div class="moodboard-img-container h-[80%] aspect-[3/4] bg-surface relative shrink-0">
+                        <img src="assets/Gemini_Generated_Image_xei1qdxei1qdxei1.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -494,9 +498,90 @@ Cook with the gold standard.
             // 4. GSAP Animations
             document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
 
-            // Hero Animation
-            gsap.from(".pt-20 h1", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2 });
-            gsap.from(".pt-20 p", { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.8 });
+            // Preloader and Hero Initialization
+            let counter = { val: 0 };
+            const heroH1 = document.querySelector(".pt-20 h1");
+            const text = heroH1.innerHTML;
+            heroH1.innerHTML = "";
+            text.split(/(<br>|<span[^>]*>.*?<\/span>)/g).forEach(part => {
+                if(!part) return;
+                if(part === "<br>") { heroH1.innerHTML += "<br>"; return; }
+                if(part.startsWith("<span")) {
+                    const spanContent = part.replace(/(<([^>]+)>)/gi, "");
+                    const spanWrap = spanContent.split("").map(char => {
+                        if (char === " ") return "&nbsp;";
+                        return `<span class="char italic text-charcoal">${char}</span>`;
+                    }).join("");
+                    heroH1.innerHTML += spanWrap;
+                    return;
+                }
+                const spanWrap = part.split("").map(char => {
+                    if (char === " ") return "&nbsp;";
+                    return `<span class="char">${char}</span>`;
+                }).join("");
+                heroH1.innerHTML += spanWrap;
+            });
+
+            const initAnimations = () => {
+                gsap.to(".char", {
+                    y: 0, opacity: 1, rotate: 0,
+                    duration: 1.2,
+                    stagger: 0.03,
+                    ease: "back.out(1.5)"
+                });
+                gsap.from(".pt-20 p", { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.6 });
+                
+                // Strategy and Copy Reveals
+                gsap.utils.toArray('#strategy .grid, #copy .bg-alabaster').forEach(function(elem) {
+                    gsap.fromTo(elem, 
+                        { y: 50, opacity: 0 }, 
+                        {
+                            y: 0, opacity: 1, duration: 1, ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: elem,
+                                start: "top 85%",
+                            }
+                        }
+                    );
+                });
+
+                // Horizontal Scroll
+                const moodContainer = document.getElementById("moodboard-scroll-wrapper");
+                if (moodContainer) {
+                    gsap.to(moodContainer, {
+                        x: () => -(moodContainer.scrollWidth - window.innerWidth) + "px",
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: "#moodboard-container",
+                            pin: true,
+                            scrub: 1,
+                            end: () => "+=" + (moodContainer.scrollWidth - window.innerWidth)
+                        }
+                    });
+                }
+            };
+
+            gsap.to(counter, {
+                val: 100,
+                duration: 2.5,
+                ease: "power3.inOut",
+                onUpdate: function() {
+                    document.getElementById("loader-counter").innerText = Math.round(counter.val);
+                    document.getElementById("loader-percent").style.opacity = counter.val / 100;
+                },
+                onComplete: function() {
+                    gsap.to("#preloader", {
+                        yPercent: -100,
+                        duration: 1.2,
+                        ease: "power4.inOut",
+                        onComplete: () => {
+                            document.body.classList.remove("hide-scroll");
+                            initAnimations();
+                        }
+                    });
+                }
+            });
+            gsap.to("#loader-counter", { y: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
 
             gsap.to(".pt-20", {
                 yPercent: 30,
@@ -504,30 +589,7 @@ Cook with the gold standard.
                 scrollTrigger: { trigger: ".pt-20", start: "top top", end: "bottom top", scrub: true }
             });
 
-            // ScrollTrigger reveals for sections
-            gsap.utils.toArray('#strategy .grid, #moodboard .grid, #copy .bg-alabaster').forEach(function(elem) {
-                gsap.fromTo(elem, 
-                    { y: 50, opacity: 0 }, 
-                    {
-                        y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: elem,
-                            start: "top 85%",
-                        }
-                    }
-                );
-            });
-
-            // Moodboard Image Parallax
-            gsap.utils.toArray('.moodboard-img').forEach(img => {
-                gsap.to(img, {
-                    scale: 1.15,
-                    ease: "none",
-                    scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true }
-                });
-            });
-
-            // 3D Tilt Effect on Pillar Cards
+            // 3D Tilt Effect on Pillar Cards (Enhanced)
             const tiltCards = document.querySelectorAll('#copy .bg-alabaster');
             tiltCards.forEach(card => {
                 card.addEventListener('mousemove', e => {
@@ -536,19 +598,20 @@ Cook with the gold standard.
                     const y = e.clientY - rect.top;
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -5;
-                    const rotateY = ((x - centerX) / centerX) * 5;
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
                     
                     gsap.to(card, {
                         rotateX: rotateX,
                         rotateY: rotateY,
                         transformPerspective: 1000,
                         ease: "power2.out",
-                        duration: 0.5
+                        duration: 0.5,
+                        scale: 1.02
                     });
                 });
                 card.addEventListener('mouseleave', () => {
-                    gsap.to(card, { rotateX: 0, rotateY: 0, ease: "elastic.out(1, 0.3)", duration: 1.5 });
+                    gsap.to(card, { rotateX: 0, rotateY: 0, scale: 1, ease: "elastic.out(1, 0.3)", duration: 1.5 });
                 });
             });
             
