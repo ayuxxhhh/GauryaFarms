@@ -76,6 +76,35 @@
             transform: translateY(0);
         }
 
+        .clip-reveal {
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .clip-reveal.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .jharokha-arch {
+            border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-bottom: none;
+            padding-top: 4px;
+        }
+
+        @keyframes slow-rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        .rotating-mandala { animation: slow-rotate 120s linear infinite; }
+
+        /* Subtle Heritage Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231A1A1A' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
         .moodboard-img-container {
             overflow: hidden;
         }
@@ -131,7 +160,9 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 reveal">
                 <div class="lg:col-span-4">
                     <h2 class="font-serif text-4xl mb-4">Strategic<br>Positioning</h2>
-                    <div class="w-12 h-[1px] bg-gold mb-8"></div>
+                    <div class="flex mb-8 opacity-80 text-gold">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10z"/><path d="M12 12s-6 2-8 6c2 2 6 0 8-6z"/><path d="M12 12s6 2 8 6c-2 2-6 0-8-6z"/><path d="M12 22v-3"/></svg>
+                    </div>
                     <p class="text-gray-400 font-light leading-relaxed">
                         The market is drowning in identical claims and reverse-engineered tradition. Gaurya Farms is stepping out of the copycat trap by establishing an ultimate moat: <strong class="text-gold font-normal italic">"We are the only ghee made by people actually living the ancestral life."</strong>
                     </p>
@@ -186,7 +217,9 @@
     <section id="moodboard-container" class="relative overflow-hidden bg-charcoal text-alabaster py-24">
         <div class="mb-16 text-center px-6 reveal">
             <h2 class="font-serif text-4xl mb-4 text-gold">Visual Direction & Moodboard</h2>
-            <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+            <div class="flex justify-center mb-6 opacity-80 text-gold">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10z"/><path d="M12 12s-6 2-8 6c2 2 6 0 8-6z"/><path d="M12 12s6 2 8 6c-2 2-6 0-8-6z"/><path d="M12 22v-3"/></svg>
+            </div>
             <p class="text-gray-400 font-light max-w-xl mx-auto">Dark glass, raw documentary photography of the farm, and a celebration of rich, golden textures.</p>
         </div>
         <div id="moodboard-scroll-wrapper" class="flex flex-nowrap h-[70vh] w-[300vw]">
@@ -198,15 +231,15 @@
                     <p class="text-sm md:text-lg text-gray-400 font-light max-w-xl">Moving away from standard plastic jars. Using dark UV-protective glass, minimalist labels, and tactile gold embossing to feel like a premium elixir.</p>
                 </div>
                 <div class="md:w-1/2 flex gap-6 h-full justify-center items-center">
-                    <div class="moodboard-img-container h-[80%] aspect-[3/4] bg-surface relative shrink-0">
-                        <img src="assets/Gemini_Generated_Image_qa7di8qa7di8qa7d.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                    <div class="moodboard-img-container h-[90%] aspect-[3/4] bg-surface relative shrink-0">
+                        <img src="assets/black-jar.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                     </div>
-                    <div class="flex flex-col gap-6 h-[80%]">
-                        <div class="moodboard-img-container h-1/2 aspect-square bg-surface relative shrink-0">
-                            <img src="assets/Gemini_Generated_Image_rdoecdrdoecdrdoe.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                    <div class="flex flex-col gap-6 h-[90%]">
+                        <div class="moodboard-img-container h-[60%] aspect-square bg-surface relative shrink-0">
+                            <img src="assets/embossing.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                         </div>
-                        <div class="moodboard-img-container h-1/2 aspect-[3/4] bg-surface relative shrink-0">
-                            <img src="assets/Gemini_Generated_Image_i1awfai1awfai1aw.png" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                        <div class="moodboard-img-container h-[40%] aspect-[4/3] bg-surface relative shrink-0">
+                            <img src="assets/boxes.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                         </div>
                     </div>
                 </div>
@@ -216,10 +249,10 @@
             <div class="w-screen h-full flex flex-col md:flex-row items-center justify-center px-12 md:px-24 gap-12">
                 <div class="md:w-1/2 order-2 md:order-1 flex gap-6 h-full justify-center items-center">
                     <div class="moodboard-img-container h-[80%] aspect-[4/5] bg-surface relative shrink-0">
-                        <img src="assets/pouring-oil.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                        <img src="assets/pouring-oil.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                     </div>
                     <div class="moodboard-img-container h-[60%] aspect-square bg-surface relative shrink-0">
-                        <img src="assets/oil-bubbles.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                        <img src="assets/oil-bubbles.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                     </div>
                 </div>
                 <div class="md:w-1/2 order-1 md:order-2">
@@ -237,10 +270,10 @@
                 <div class="md:w-1/2 flex gap-6 h-full justify-center items-center">
                     <div class="flex flex-col gap-6 h-[80%]">
                         <div class="moodboard-img-container h-[50%] aspect-square bg-surface relative shrink-0">
-                            <img src="assets/farmer-selfie.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                            <img src="assets/farmer-selfie.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                         </div>
                         <div class="moodboard-img-container h-[50%] aspect-[3/4] bg-surface relative shrink-0">
-                            <img src="assets/cow-tree.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img">
+                            <img src="assets/cow-tree.jpg" onerror="this.style.display='none'" class="w-full h-full object-cover moodboard-img clip-reveal">
                         </div>
                     </div>
                 </div>
@@ -250,11 +283,22 @@
     </section>
 
     <!-- Copywriting Section -->
-    <section id="copy" class="py-24 px-6 bg-surface">
-        <div class="max-w-5xl mx-auto">
+    <section id="copy" class="py-24 px-6 bg-surface relative overflow-hidden">
+        <!-- Rotating Mandala Background -->
+        <svg class="absolute top-1/2 left-1/2 w-[120vw] h-[120vw] max-w-[1200px] max-h-[1200px] text-gold opacity-10 pointer-events-none rotating-mandala" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <path d="M50 0 L55 45 L100 50 L55 55 L50 100 L45 55 L0 50 L45 45 Z" fill="currentColor" opacity="0.5"/>
+            <circle cx="50" cy="50" r="30" stroke-width="0.5"/>
+            <circle cx="50" cy="50" r="45" stroke-width="0.2"/>
+            <path d="M15 15 L85 85 M15 85 L85 15" stroke-width="0.5"/>
+            <path d="M50 0 V100 M0 50 H100" stroke-width="0.5"/>
+        </svg>
+
+        <div class="max-w-5xl mx-auto relative z-10">
             <div class="mb-16 text-center reveal">
                 <h2 class="font-serif text-4xl mb-4">Core Narrative Pillars</h2>
-                <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+                <div class="flex justify-center mb-6 opacity-80 text-gold">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10z"/><path d="M12 12s-6 2-8 6c2 2 6 0 8-6z"/><path d="M12 12s6 2 8 6c-2 2-6 0-8-6z"/><path d="M12 22v-3"/></svg>
+                </div>
                 <p class="text-muted font-light max-w-xl mx-auto">Addressing the critical gaps in trust and separating Gaurya Farms from the sea of sameness.</p>
             </div>
 
@@ -276,7 +320,7 @@
                             <div class="mt-8">
                                 <h5 class="font-bold text-xs mb-3 uppercase tracking-wider text-gold">The Faces of Seva</h5>
                                 <div class="bg-white p-3 border border-charcoal/10 shadow-sm -rotate-2 hover:rotate-0 transition-transform w-3/4">
-                                    <img src="assets/cow-sunglasses.jpg" class="w-full h-40 object-cover mb-3 sepia-[0.1]" alt="Surabhi">
+                                    <img src="assets/cow-sunglasses.jpg" class="w-full h-40 object-cover mb-3 sepia-[0.1] jharokha-arch clip-reveal" alt="Surabhi">
                                     <h5 class="font-serif text-lg mb-1">Surabhi</h5>
                                     <p class="text-[11px] text-charcoal/70 font-light leading-tight">The diva of the herd. She refuses to step out into the sun without her custom shades and demands fresh sugarcane as a snack.</p>
                                 </div>
@@ -313,7 +357,7 @@ Refuse to surrender. Protect your roots.
                             <div class="mt-8">
                                 <h5 class="font-bold text-xs mb-3 uppercase tracking-wider text-gold">The Faces of Seva</h5>
                                 <div class="bg-white p-3 border border-charcoal/10 shadow-sm rotate-2 hover:rotate-0 transition-transform w-3/4 ml-auto">
-                                    <img src="assets/cow-flowers.jpg" class="w-full h-40 object-cover mb-3 sepia-[0.1]" alt="Nandini">
+                                    <img src="assets/cow-flowers.jpg" class="w-full h-40 object-cover mb-3 sepia-[0.1] jharokha-arch clip-reveal" alt="Nandini">
                                     <h5 class="font-serif text-lg mb-1">Nandini</h5>
                                     <p class="text-[11px] text-charcoal/70 font-light leading-tight">The romantic of the farm. She spends hours sniffing the daisies and her milk is said to carry a faint, sweet floral note in the spring.</p>
                                 </div>
@@ -444,10 +488,19 @@ Verify the source. Demand the truth.
                     );
                 });
 
-                // Horizontal Scroll
+                // Clip Reveal Animation
+                gsap.utils.toArray('.clip-reveal').forEach(function(elem) {
+                    ScrollTrigger.create({
+                        trigger: elem,
+                        start: "top 85%",
+                        onEnter: () => elem.classList.add("active")
+                    });
+                });
+
+                // Horizontal Scroll with Parallax
                 const moodContainer = document.getElementById("moodboard-scroll-wrapper");
                 if (moodContainer) {
-                    gsap.to(moodContainer, {
+                    let scrollTween = gsap.to(moodContainer, {
                         x: () => -(moodContainer.scrollWidth - window.innerWidth) + "px",
                         ease: "none",
                         scrollTrigger: {
@@ -456,6 +509,24 @@ Verify the source. Demand the truth.
                             scrub: 1,
                             end: () => "+=" + (moodContainer.scrollWidth - window.innerWidth)
                         }
+                    });
+
+                    // Inner Parallax for moodboard images
+                    gsap.utils.toArray('.moodboard-img').forEach((img) => {
+                        gsap.set(img, { scale: 1.2, transformOrigin: "center center" });
+                        gsap.fromTo(img, 
+                            { xPercent: -10 },
+                            {
+                                xPercent: 10,
+                                ease: "none",
+                                scrollTrigger: {
+                                    trigger: "#moodboard-container",
+                                    start: "top top",
+                                    end: () => "+=" + (moodContainer.scrollWidth - window.innerWidth),
+                                    scrub: 1
+                                }
+                            }
+                        );
                     });
                 }
             };
