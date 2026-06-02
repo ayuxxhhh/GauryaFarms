@@ -4,9 +4,7 @@ A premium brand playbook website for **Gaurya Farms**, positioning A2 Bilona Ghe
 
 ## 🌐 Live Site
 
-Deployed via **GitHub Pages**: [View Live →](https://YOUR_USERNAME.github.io/WeCredit/)
-
-> Replace `YOUR_USERNAME` with your GitHub username after deployment.
+Deployed via **GitHub Pages**: [View Live →](https://ayuxxhhh.github.io/WeCredit/)
 
 ## 📂 Project Structure
 
