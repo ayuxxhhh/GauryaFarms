@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -34,8 +38,42 @@
         }
     </script>
     <style>
-        body { background-color: #FAF9F6; color: #1A1A1A; }
+        body { background-color: #FAF9F6; color: #1A1A1A; cursor: none; }
         ::selection { background-color: #C5A059; color: white; }
+
+        /* Custom Cursor (Gold Theme) */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #C5A059; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(197, 160, 89, 0.5); transition: width 0.2s, height 0.2s; }
+        .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(197, 160, 89, 0.1); border-color: transparent; mix-blend-mode: multiply; }
+
+        /* Noise Overlay */
+        #noise-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.04;
+        }
+
+        /* Lenis */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-smooth iframe { pointer-events: none; }
+
         
         .reveal {
             opacity: 0;
@@ -59,6 +97,11 @@
     </style>
 </head>
 <body class="font-sans antialiased text-charcoal selection:bg-gold selection:text-white">
+
+    <!-- Custom Cursor & Noise -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <canvas id="noise-canvas"></canvas>
 
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-alabaster/90 backdrop-blur-md border-b border-charcoal/5">
@@ -353,24 +396,161 @@ Cook with the gold standard.
         <p class="text-muted text-xs tracking-widest uppercase">The Sommelier's Ghee Playbook &copy; 2026</p>
     </footer>
 
-    <!-- Simple Scroll Animation Script -->
+    <!-- Advanced Interactive Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const reveals = document.querySelectorAll(".reveal");
+            gsap.registerPlugin(ScrollTrigger);
 
-            function reveal() {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 100;
+            // 1. Lenis Smooth Scroll
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
 
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add("active");
-                    }
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+
+            // 2. Custom Magnetic Cursor
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let outlineX = mouseX;
+            let outlineY = mouseY;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            });
+
+            const renderCursor = () => {
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+                requestAnimationFrame(renderCursor);
+            };
+            renderCursor();
+
+            const interactiveElements = document.querySelectorAll('a, button, .moodboard-img-container, .bg-alabaster, .bg-surface');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+
+            // 3. WebGL/Canvas Noise Effect
+            const canvas = document.getElementById('noise-canvas');
+            const ctxCanvas = canvas.getContext('2d');
+            let wWidth, wHeight;
+            let noiseData = [];
+            let frame = 0;
+            let loopTimeout;
+
+            const createNoise = () => {
+                const idata = ctxCanvas.createImageData(wWidth, wHeight);
+                const buffer32 = new Uint32Array(idata.data.buffer);
+                const len = buffer32.length;
+                for (let i = 0; i < len; i++) {
+                    if (Math.random() < 0.5) { buffer32[i] = 0xff000000; }
                 }
-            }
-            window.addEventListener("scroll", reveal);
-            reveal(); // Trigger on load
+                noiseData.push(idata);
+            };
+
+            const paintNoise = () => {
+                if (frame === 9) { frame = 0; } else { frame++; }
+                ctxCanvas.putImageData(noiseData[frame], 0, 0);
+            };
+
+            const loop = () => {
+                paintNoise();
+                loopTimeout = window.setTimeout(() => {
+                    requestAnimationFrame(loop);
+                }, (1000 / 25));
+            };
+
+            const setup = () => {
+                wWidth = window.innerWidth;
+                wHeight = window.innerHeight;
+                canvas.width = wWidth;
+                canvas.height = wHeight;
+                for (let i = 0; i < 10; i++) { createNoise(); }
+                loop();
+            };
+
+            setup();
+            window.addEventListener('resize', () => {
+                window.clearTimeout(loopTimeout);
+                setup();
+            });
+
+            // 4. GSAP Animations
+            document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
+
+            // Hero Animation
+            gsap.from(".pt-20 h1", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2 });
+            gsap.from(".pt-20 p", { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.8 });
+
+            gsap.to(".pt-20", {
+                yPercent: 30,
+                ease: "none",
+                scrollTrigger: { trigger: ".pt-20", start: "top top", end: "bottom top", scrub: true }
+            });
+
+            // ScrollTrigger reveals for sections
+            gsap.utils.toArray('#strategy .grid, #moodboard .grid, #copy .bg-alabaster').forEach(function(elem) {
+                gsap.fromTo(elem, 
+                    { y: 50, opacity: 0 }, 
+                    {
+                        y: 0, opacity: 1, duration: 1, ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: "top 85%",
+                        }
+                    }
+                );
+            });
+
+            // Moodboard Image Parallax
+            gsap.utils.toArray('.moodboard-img').forEach(img => {
+                gsap.to(img, {
+                    scale: 1.15,
+                    ease: "none",
+                    scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true }
+                });
+            });
+
+            // 3D Tilt Effect on Pillar Cards
+            const tiltCards = document.querySelectorAll('#copy .bg-alabaster');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    
+                    gsap.to(card, {
+                        rotateX: rotateX,
+                        rotateY: rotateY,
+                        transformPerspective: 1000,
+                        ease: "power2.out",
+                        duration: 0.5
+                    });
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, { rotateX: 0, rotateY: 0, ease: "elastic.out(1, 0.3)", duration: 1.5 });
+                });
+            });
             
             const wrapLabel = (label) => {
                 if (label.length <= 16) return label;
