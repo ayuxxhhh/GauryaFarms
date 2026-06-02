@@ -55,18 +55,6 @@
         .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(197, 160, 89, 0.5); transition: width 0.2s, height 0.2s; }
         .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(197, 160, 89, 0.1); border-color: transparent; mix-blend-mode: multiply; }
 
-        /* Noise Overlay */
-        #noise-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.08;
-        }
-
         /* Lenis */
         html.lenis, html.lenis body { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -109,10 +97,9 @@
         </div>
     </div>
 
-    <!-- Custom Cursor & Noise -->
+    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
-    <canvas id="noise-canvas"></canvas>
 
     <!-- Navigation -->
     <nav class="fixed w-full top-0 z-50 bg-alabaster/90 backdrop-blur-md border-b border-charcoal/5">
@@ -407,52 +394,7 @@ Verify the source. Demand the truth.
                 el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
             });
 
-            // 3. WebGL/Canvas Noise Effect
-            const canvas = document.getElementById('noise-canvas');
-            const ctxCanvas = canvas.getContext('2d');
-            let wWidth, wHeight;
-            let noiseData = [];
-            let frame = 0;
-            let loopTimeout;
-
-            const createNoise = () => {
-                const idata = ctxCanvas.createImageData(wWidth, wHeight);
-                const buffer32 = new Uint32Array(idata.data.buffer);
-                const len = buffer32.length;
-                for (let i = 0; i < len; i++) {
-                    if (Math.random() < 0.5) { buffer32[i] = 0xff000000; }
-                }
-                noiseData.push(idata);
-            };
-
-            const paintNoise = () => {
-                if (frame === 9) { frame = 0; } else { frame++; }
-                ctxCanvas.putImageData(noiseData[frame], 0, 0);
-            };
-
-            const loop = () => {
-                paintNoise();
-                loopTimeout = window.setTimeout(() => {
-                    requestAnimationFrame(loop);
-                }, (1000 / 25));
-            };
-
-            const setup = () => {
-                wWidth = window.innerWidth;
-                wHeight = window.innerHeight;
-                canvas.width = wWidth;
-                canvas.height = wHeight;
-                for (let i = 0; i < 10; i++) { createNoise(); }
-                loop();
-            };
-
-            setup();
-            window.addEventListener('resize', () => {
-                window.clearTimeout(loopTimeout);
-                setup();
-            });
-
-            // 4. GSAP Animations
+            // 3. GSAP Animations
             document.querySelectorAll('.reveal').forEach(el => el.classList.remove('reveal'));
 
             // Preloader and Hero Initialization
