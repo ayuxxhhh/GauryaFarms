@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurya Farms | The Sommelier's Ghee — Brand Playbook</title>
+    <meta name="description" content="The strategic brand playbook for Gaurya Farms — redefining ghee as a provocative, high-performance luxury superfood. Strategy, moodboard, and content pillars.">
+    <meta property="og:title" content="Gaurya Farms | The Sommelier's Ghee">
+    <meta property="og:description" content="Pivoting from a traditional cooking fat to a provocative, high-performance lifestyle superfood.">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        charcoal: '#1A1A1A',
+                        alabaster: '#FAF9F6',
+                        gold: '#C5A059',
+                        muted: '#8C8C8C',
+                        surface: '#F2F0E9',
+                        accent: '#8B0000'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FAF9F6; color: #1A1A1A; }
+        ::selection { background-color: #C5A059; color: white; }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .moodboard-img-container {
+            overflow: hidden;
+        }
+        .moodboard-img {
+            transition: transform 0.7s ease;
+        }
+        .moodboard-img-container:hover .moodboard-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-charcoal selection:bg-gold selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-alabaster/90 backdrop-blur-md border-b border-charcoal/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-serif italic text-xl tracking-wider font-bold">Gaurya Farms.</div>
+            <div class="space-x-8 text-sm tracking-widest uppercase hidden md:flex text-muted font-medium">
+                <a href="#strategy" class="hover:text-gold transition-colors">Strategy</a>
+                <a href="#moodboard" class="hover:text-gold transition-colors">Moodboard</a>
+                <a href="#copy" class="hover:text-gold transition-colors">Content Copy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <p class="text-gold tracking-[0.2em] uppercase text-sm mb-6 font-bold">The Brand Playbook</p>
+            <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8">Redefining <br><span class="italic text-charcoal">Liquid Gold.</span></h1>
+            <p class="text-lg md:text-xl text-muted font-light max-w-2xl mx-auto leading-relaxed">
+                Pivoting from a traditional cooking fat to a provocative, high-performance lifestyle superfood. 
+                This is the strategic blueprint for <strong class="text-charcoal font-medium">Gaurya Farms</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section id="strategy" class="py-24 px-6 bg-charcoal text-alabaster">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 reveal">
+                <div class="lg:col-span-4">
+                    <h2 class="font-serif text-4xl mb-4">Strategic<br>Positioning</h2>
+                    <div class="w-12 h-[1px] bg-gold mb-8"></div>
+                    <p class="text-gray-400 font-light leading-relaxed">
+                        The market is drowning in safe, boring "Maa ke haath ka" nostalgia. Gaurya Farms is claiming the aggressive whitespace of <strong class="text-gold font-normal italic">"Unapologetic Bio-Hacking & Luxury Terroir."</strong> We are a premium supplement that happens to taste amazing.
+                    </p>
+                </div>
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                        <div class="space-y-10">
+                            <div>
+                                <h3 class="text-gold tracking-widest text-xs uppercase mb-3 font-bold">Target Audience</h3>
+                                <h4 class="font-serif text-2xl mb-2">The Edge-Seeking Optimizer</h4>
+                                <p class="text-gray-400 font-light text-sm leading-relaxed">
+                                    Age 25-45. Affluent urbanites, relentless bio-hackers, cross-fitters, and luxury wellness adopters. They don’t just want tradition; they want a biological advantage. They spend $100 on face creams and $10 on coffee—they will gladly pay a premium for peak cellular fuel.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="text-gold tracking-widest text-xs uppercase mb-3 font-bold">Brand Tone</h3>
+                                <h4 class="font-serif text-2xl mb-2">Provocative & Reverent</h4>
+                                <p class="text-gray-400 font-light text-sm leading-relaxed">
+                                    A high-end apothecary meets a luxury vineyard, with the swagger of a modern disruptor. We don't whisper about tradition; we drop the mic with science. Bold, highly aesthetic, entirely devoid of cliché.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#222222] p-6 rounded border border-white/5 flex flex-col justify-center items-center">
+                            <h3 class="font-bold text-alabaster text-sm tracking-wider uppercase mb-4">Audience Segmentation</h3>
+                            <div class="relative w-full h-56">
+                                <canvas id="audienceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 border border-white/10 relative overflow-hidden bg-[#222222] grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-gold"></div>
+                        <div>
+                            <h3 class="text-gold tracking-widest text-xs uppercase mb-3 font-bold">Key Differentiator</h3>
+                            <h4 class="font-serif text-3xl mb-3">Farm-to-Cellular Impact</h4>
+                            <p class="text-gray-400 font-light text-sm leading-relaxed">
+                                We don't just sell "pure A2 ghee." We sell "The Sommelier's Ghee." Gaurya Farms treats ghee like fine wine, emphasizing the exact harvest season, the specific diet of our cows, and the exact bio-chemical benefit (Butyrate) it delivers.
+                            </p>
+                        </div>
+                        <div class="relative w-full h-64">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moodboard Section -->
+    <section id="moodboard" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 text-center reveal">
+                <h2 class="font-serif text-4xl mb-4">Visual Direction</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+                <p class="text-muted font-light max-w-xl mx-auto">Dark glass, tactile finishes, exact scientific breakdowns, and a celebration of rich, golden textures.</p>
+            </div>
+
+            <!-- Moodboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                
+                <!-- Category 1: Bespoke Packaging -->
+                <div class="space-y-8">
+                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">I. Bespoke Packaging</h3>
+                    <p class="text-sm text-muted font-light">Moving away from standard plastic jars. Using dark UV-protective glass, minimalist labels, and tactile gold embossing to feel like a premium elixir.</p>
+                    
+                    <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
+                        <img src="assets/Gemini_Generated_Image_qa7di8qa7di8qa7d.png" alt="Gaurya Farms Dark Jar with Gold Embossing" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                    </div>
+                    
+                    <div class="moodboard-img-container aspect-square bg-surface relative">
+                        <img src="assets/Gemini_Generated_Image_rdoecdrdoecdrdoe.png" alt="Premium Ghee Design" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted">Image unavailable</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
+                            <img src="assets/Gemini_Generated_Image_i1awfai1awfai1aw.png" alt="Gaurya Farms Gold Cow Embossing Close-up" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                        </div>
+                        <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
+                            <img src="assets/Gemini_Generated_Image_hro7yahro7yahro7.png" alt="Himalayan Infusions" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Texture & Purity -->
+                <div class="space-y-8 md:pt-12">
+                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">II. Liquid Gold</h3>
+                    <p class="text-sm text-muted font-light">Visceral, macro photography. Highlighting the rich, amber texture, the perfect pour, and the absolute purity of the fat structure.</p>
+                    
+                    <div class="moodboard-img-container aspect-[4/5] bg-surface relative">
+                        <img src="assets/pouring-oil.jpg" alt="Pouring Oil" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                    </div>
+
+                    <div class="moodboard-img-container aspect-square bg-surface relative">
+                        <img src="assets/oil-bubbles.jpg" alt="Oil Bubbles" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Scientific Traceability -->
+                <div class="space-y-8 md:pt-24">
+                    <h3 class="font-serif text-xl border-b border-charcoal/10 pb-4">III. Scientific Terroir</h3>
+                    <p class="text-sm text-muted font-light">Clinical precision combined with natural beauty. Using grid layouts to explain ingredients, harvest times, and bio-hacking combinations.</p>
+                    
+                    <div class="moodboard-img-container aspect-[3/4] bg-surface relative">
+                        <img src="assets/Gemini_Generated_Image_xei1qdxei1qdxei1.png" alt="Gaurya Farms Ingredient Grid" class="w-full h-full object-cover moodboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden absolute inset-0 items-center justify-center text-xs text-muted text-center p-2">Image unavailable</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Copywriting Section -->
+    <section id="copy" class="py-24 px-6 bg-surface">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 text-center reveal">
+                <h2 class="font-serif text-4xl mb-4">Content Pillars & Copy</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+                <p class="text-muted font-light max-w-xl mx-auto">4 core content angles designed to disrupt the feed, stop the scroll, and position Gaurya Farms as an unmatched luxury.</p>
+            </div>
+
+            <div class="space-y-16">
+                
+                <!-- Pillar 1: Unhinged Wellness -->
+                <div class="bg-alabaster p-8 md:p-12 shadow-sm border border-charcoal/5 reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h3 class="text-gold tracking-widest text-xs uppercase font-bold">Pillar 01</h3>
+                        <span class="bg-charcoal text-white text-[10px] uppercase tracking-wider px-2 py-1 rounded">Out of the Box</span>
+                    </div>
+                    <h4 class="font-serif text-3xl mb-8">"Eat Your Skincare" (Unhinged Wellness)</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">Visual Direction</h5>
+                            <p class="text-sm text-muted font-light mb-6 border-l-2 border-gold pl-4">A high-end, aesthetic "Get Ready With Me" video. A model applies an expensive $300 face serum. She then opens a jar of Gaurya Farms Ghee, takes a solid spoonful, literally eats it straight, winks at the camera, and walks out.</p>
+                            
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Format</h5>
+                            <p class="text-sm text-muted font-light">Short-form Video (Instagram Reel / TikTok)</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Caption</h5>
+                            <div class="bg-surface p-6 font-light text-sm leading-relaxed whitespace-pre-line text-charcoal italic">Hyaluronic acid is cute, but Butyric acid actually heals your gut lining so you don’t need a 12-step routine to glow. 
+
+Stop trying to polish a damaged microbiome. Start at the source. 
+
+Gaurya Farms A2 Bilona Ghee isn't just for cooking. It's the ultimate biological hack for cellular repair, glowing skin, and hormonal balance. 
+
+Eat your skincare. 🥄✨
+
+#BioHacking #GauryaFarms #GutHealth #SkincareRoutine #InnerGlow #ButyricAcid #WellnessHacks</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: The Ghee Snob -->
+                <div class="bg-alabaster p-8 md:p-12 shadow-sm border border-charcoal/5 reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h3 class="text-gold tracking-widest text-xs uppercase font-bold">Pillar 02</h3>
+                        <span class="bg-charcoal text-white text-[10px] uppercase tracking-wider px-2 py-1 rounded">Provocative Luxury</span>
+                    </div>
+                    <h4 class="font-serif text-3xl mb-8">The Unapologetic Ghee Snob</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">Visual Direction</h5>
+                            <p class="text-sm text-muted font-light mb-6 border-l-2 border-gold pl-4">POV: You're at a pretentious high-end café. The barista hands over a black coffee. You pull a bespoke, travel-sized black glass jar of Gaurya Farms ghee from a designer bag, drop a spoonful in, use a portable milk frother right at the table, and sip while people stare.</p>
+                            
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Format</h5>
+                            <p class="text-sm text-muted font-light">POV Reel / High-Contrast Lifestyle Photography</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Caption</h5>
+                            <div class="bg-surface p-6 font-light text-sm leading-relaxed whitespace-pre-line text-charcoal italic">Seed oils in the barista milk? We’ll pass. 
+
+Real optimizers bring their own fat. 
+
+Blending Gaurya Farms high-altitude ghee into your caffeine doesn't just taste incredible—the pure lipid structure binds to caffeine molecules, slowing absorption and killing the 2 PM cortisol crash. 
+
+Bring your own gold. 
+
+#BYOG #GauryaFarms #BulletproofCoffee #HighPerformer #LuxuryLifestyle #Biohacker #NoCrash</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Radical Traceability -->
+                <div class="bg-alabaster p-8 md:p-12 shadow-sm border border-charcoal/5 reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h3 class="text-gold tracking-widest text-xs uppercase font-bold">Pillar 03</h3>
+                    </div>
+                    <h4 class="font-serif text-3xl mb-8">Terroir & Radical Traceability</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">Visual Direction</h5>
+                            <p class="text-sm text-muted font-light mb-6 border-l-2 border-gold pl-4">A hyper-organized, Naber Studios-style grid (referencing Moodboard image 3). Top row: Fresh green monsoon grass. Middle row: The Gir cow milk profile. Bottom row: The dark glass Gaurya Farms jar. Clinical, beautiful, transparent.</p>
+                            
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Format</h5>
+                            <p class="text-sm text-muted font-light">Educational Editorial Carousel</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Caption</h5>
+                            <div class="bg-surface p-6 font-light text-sm leading-relaxed whitespace-pre-line text-charcoal italic">You wouldn’t drink a fine vintage without knowing the vineyard. Why compromise on the elixir that fuels your cells?
+
+Generic ghee is a factory blend. Gaurya Farms is dictated by terroir. 
+
+This batch was harvested when our Gir cows were grazing on post-monsoon, mineral-dense flora. The result? A distinct, deep amber hue and a massive spike in naturally occurring Butyric acid. 
+
+Trace your nutrition back to the exact earth it came from. 
+
+#SommelierGhee #GauryaFarms #RadicalTraceability #A2Ghee #CleanEating #VedicScience</div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Pillar 4: Culinary Flex -->
+                 <div class="bg-alabaster p-8 md:p-12 shadow-sm border border-charcoal/5 reveal">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h3 class="text-gold tracking-widest text-xs uppercase font-bold">Pillar 04</h3>
+                    </div>
+                    <h4 class="font-serif text-3xl mb-8">The Elevated Culinary Flex</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">Visual Direction</h5>
+                            <p class="text-sm text-muted font-light mb-6 border-l-2 border-gold pl-4">High-end ASMR. A thick cut of wild mushroom sourdough toast. A heavy, matte-black spoon drizzles a perfect, glossy stream of Gaurya Farms ghee over the top. The sound of the crunch and sizzle is front and center.</p>
+                            
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Format</h5>
+                            <p class="text-sm text-muted font-light">ASMR Video (Macro Lens)</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-sm mb-3 uppercase tracking-wider">The Caption</h5>
+                            <div class="bg-surface p-6 font-light text-sm leading-relaxed whitespace-pre-line text-charcoal italic">The secret behind a Michelin-level sear isn't butter. It's high-smoke-point purity. 
+
+Clocking in at a smoke point of 250°C (482°F), Gaurya Farms Bilona Ghee caramelizes without breaking down into harmful free radicals. 
+
+It imparts a deep, nutty richness that elevates ordinary ingredients into an event. 
+
+Cook with the gold standard. 
+
+#CulinaryArts #GauryaFarms #GourmetAtHome #FineDining #HealthyFats #FoodASMR</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-alabaster py-12 text-center">
+        <p class="font-serif italic text-2xl mb-4 font-bold">Gaurya Farms.</p>
+        <p class="text-muted text-xs tracking-widest uppercase">The Sommelier's Ghee Playbook &copy; 2026</p>
+    </footer>
+
+    <!-- Simple Scroll Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            function reveal() {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 100;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
+                }
+            }
+            window.addEventListener("scroll", reveal);
+            reveal(); // Trigger on load
+            
+            const wrapLabel = (label) => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        if (currentLine) lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                });
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            };
+
+            // Doughnut Chart Configuration
+            const audienceCtx = document.getElementById('audienceChart');
+            if (audienceCtx) {
+                new Chart(audienceCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: [
+                            'Conscious Mothers', 
+                            'Modern Yogis', 
+                            'High-Performance Pros', 
+                            'Culinary Enthusiasts'
+                        ],
+                        datasets: [{
+                            data: [35, 25, 25, 15],
+                            backgroundColor: ['#C5A059', '#FAF9F6', '#8C8C8C', '#4A4A4A'],
+                            borderWidth: 0,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { 
+                                position: 'right',
+                                labels: { color: '#FAF9F6', font: { family: "'Inter', sans-serif", size: 10 } }
+                            }
+                        },
+                        cutout: '70%'
+                    }
+                });
+            }
+
+            // Radar Chart Configuration
+            const radarCtx = document.getElementById('radarChart');
+            if (radarCtx) {
+                new Chart(radarCtx.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            'Perceived Purity', 
+                            'Modern Scientific Backing', 
+                            'Sourcing Transparency', 
+                            'Aesthetic Appeal', 
+                            'Traditional Heritage'
+                        ].map(wrapLabel),
+                        datasets: [{
+                            label: 'Gaurya Farms',
+                            data: [95, 90, 95, 95, 70],
+                            backgroundColor: 'rgba(197, 160, 89, 0.2)',
+                            borderColor: '#C5A059',
+                            pointBackgroundColor: '#C5A059',
+                            borderWidth: 2
+                        }, {
+                            label: 'Generic Competitors',
+                            data: [75, 30, 40, 50, 95],
+                            backgroundColor: 'rgba(140, 140, 140, 0.1)',
+                            borderColor: '#8C8C8C',
+                            pointBackgroundColor: '#8C8C8C',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                pointLabels: { font: { family: "'Inter', sans-serif", size: 11 }, color: '#FAF9F6' },
+                                ticks: { display: false, min: 0, max: 100 }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: { color: '#FAF9F6', font: { family: "'Inter', sans-serif", size: 12 } }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

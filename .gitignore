@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Original source files (not needed for deployment)
+/brand_a_playbook*.html
+/*.docx
+
+# Original images with messy names (organized copies are in assets/)
+/Gemini_Generated_Image_*.png
+/download*.jpg
+
+# IDE
+.vscode/
+.idea/
